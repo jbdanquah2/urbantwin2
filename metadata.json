@@ -1,0 +1,6 @@
+{
+  "name": "Urban Twin AI",
+  "description": "An AI-powered Digital Twin for Smarter Cities. Continuously analyzes citizen-generated reports, updates an interactive City Health Model, and provides AI-driven urban planning insights.",
+  "requestFramePermissions": ["camera", "geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
