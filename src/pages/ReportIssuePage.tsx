@@ -83,8 +83,8 @@ export const ReportIssuePage: React.FC = () => {
     resolver: zodResolver(reportSchema),
     defaultValues: {
       locationName: '',
-      latitude: 37.7749,
-      longitude: -122.4194,
+      latitude: 6.6906,
+      longitude: -1.6187,
       issueType: 'pothole',
       severity: 'medium',
       description: '',
@@ -92,7 +92,7 @@ export const ReportIssuePage: React.FC = () => {
       environmentalImpact: '',
       recommendedAction: '',
       estimatedRepairUrgency: '7 days',
-      suggestedDepartment: 'roads department'
+      suggestedDepartment: 'Department of Urban Roads'
     }
   });
 
@@ -171,7 +171,7 @@ export const ReportIssuePage: React.FC = () => {
       // Create a sensible location name if empty
       const curLoc = watch('locationName');
       if (!curLoc) {
-        setValue('locationName', `Near ${aiData.suggestedDepartment || 'Main Road'}, San Francisco`);
+        setValue('locationName', `Near ${aiData.suggestedDepartment || 'Main Road'}, Kumasi`);
       }
 
       setAiSuccess(true);
@@ -201,11 +201,11 @@ export const ReportIssuePage: React.FC = () => {
       (err) => {
         console.warn("Geolocation blocked, using mock location near existing marker center:", err);
         // Shift current coords slightly to simulate a unique spot near the city center
-        const offsetLat = 37.7749 + (Math.random() - 0.5) * 0.015;
-        const offsetLng = -122.4194 + (Math.random() - 0.5) * 0.015;
+        const offsetLat = 6.6906 + (Math.random() - 0.5) * 0.015;
+        const offsetLng = -1.6187 + (Math.random() - 0.5) * 0.015;
         setValue('latitude', Number(offsetLat.toFixed(6)));
         setValue('longitude', Number(offsetLng.toFixed(6)));
-        setValue('locationName', `Civic Sector ${Math.floor(Math.random() * 12 + 1)}, San Francisco`);
+        setValue('locationName', `Sector ${Math.floor(Math.random() * 12 + 1)}, Kumasi`);
         setGpsLoading(false);
       },
       { timeout: 8000 }
@@ -423,7 +423,7 @@ export const ReportIssuePage: React.FC = () => {
                 <label className="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1">Street Address / Location Name</label>
                 <input
                   type="text"
-                  placeholder="e.g. 500 Castro Street, San Francisco"
+                  placeholder="e.g. Tech Junction, near KNUST Gate, Kumasi"
                   className="w-full text-xs p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 focus:outline-blue-500 text-slate-800 dark:text-slate-100"
                   {...register('locationName')}
                 />

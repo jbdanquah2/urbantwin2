@@ -40,63 +40,63 @@ app.post('/api/analyze-image', async (req, res) => {
 
   const apiKey = getGeminiKey();
   if (!apiKey) {
-    console.log('[Gemini Mock] Generating mock analysis.');
+    console.log('[Gemini Mock] Generating Kumasi-specific mock analysis.');
     // Determine a random realistic mock based on typical upload scenarios
     const mocks = [
       {
         issueType: "pothole",
         severity: "high",
         confidence: "high",
-        description: "Hazardous pothole approximately 15cm deep and 40cm wide on the active driving lane.",
-        publicSafetyRisk: "High risk of tire blowouts, wheel alignment damage, and hazardous swerving by drivers to avoid the crater.",
-        environmentalImpact: "Low. Localized asphalt wear can contribute to sediment run-off during rain.",
-        recommendedAction: "Cordon off the lane temporarily and apply high-performance rapid-setting cold-asphalt patch.",
+        description: "Hazardous potholes and asphalt crumbling on the driving lanes, hindering traffic flow.",
+        publicSafetyRisk: "High risk of vehicle tire blowouts, suspensions issues, and swerving hazards for drivers on busy Kumasi roads.",
+        environmentalImpact: "Low. Localized asphalt wear and erosion can wash soil and sediment into nearby drains.",
+        recommendedAction: "Cordon off the active lane and dispatch a road repair unit to perform deep hot-mix patching.",
         estimatedRepairUrgency: "24 hours",
-        priorityScore: 84,
+        priorityScore: 82,
         affectedInfrastructure: "road",
-        suggestedDepartment: "roads department",
+        suggestedDepartment: "Department of Urban Roads",
         duplicateLikelihood: "low"
       },
       {
         issueType: "flooding",
         severity: "critical",
         confidence: "high",
-        description: "Severe storm sewer overflow with deep ponding covering both lanes of traffic and flooding the walkway.",
-        publicSafetyRisk: "Critical risk of hydroplaning. Walking path is completely submerged, forcing pedestrians into live vehicle lanes.",
-        environmentalImpact: "Medium. Toxic street water and chemical pollutants entering surrounding green zones directly.",
-        recommendedAction: "Dispatch emergency drainage truck with vacuum hose to clear high-pressure sewer backup.",
+        description: "Severe stormwater drain backing up and ponding, flooding walkways and nearby market stalls.",
+        publicSafetyRisk: "Critical health and slip hazard for local traders and shoppers. Deep water blocks walkways, forcing pedestrians onto vehicle routes.",
+        environmentalImpact: "High. Silt, trash, and plastic waste are washed into public water systems, contaminating the Subin River basin.",
+        recommendedAction: "Dispatch municipal vacuum trucks and NADMO emergency teams to flush choked secondary sewers and clear blockages.",
         estimatedRepairUrgency: "immediate",
-        priorityScore: 96,
+        priorityScore: 95,
         affectedInfrastructure: "drainage",
-        suggestedDepartment: "drainage department",
+        suggestedDepartment: "NADMO / Drainage Department",
         duplicateLikelihood: "low"
       },
       {
         issueType: "illegal_dumping",
         severity: "medium",
         confidence: "high",
-        description: "Large heap of industrial refuse, mattresses, and plastic crates piled carelessly on the sidewalk edge.",
-        publicSafetyRisk: "Moderate trip hazard; encourages vermin/rodent infestation and blocks standard accessibility paths.",
-        environmentalImpact: "Chemical seepage from decomposing electronic parts and plastic breaking down into public storm grids.",
-        recommendedAction: "Deploy sanitation dump truck to collect and safely dispose of bulky refuse. Review local street camera logs.",
+        description: "Large pile of household solid waste, plastics, and debris dumped next to a community space boundary.",
+        publicSafetyRisk: "Promotes rodent breeding, blocks pedestrian paths, and produces severe foul odors in busy market sectors.",
+        environmentalImpact: "Decomposing waste runs off into open storm gutters, causing contamination and severe drainage chokes during rain.",
+        recommendedAction: "Deploy Zoomlion refuse collection truck to clear the waste. Erect warning signs and increase municipal patrols.",
         estimatedRepairUrgency: "48 hours",
-        priorityScore: 52,
+        priorityScore: 58,
         affectedInfrastructure: "waste",
-        suggestedDepartment: "sanitation department",
+        suggestedDepartment: "Environmental Health Department / Zoomlion",
         duplicateLikelihood: "low"
       },
       {
         issueType: "broken_streetlight",
         severity: "medium",
         confidence: "high",
-        description: "Overhead utility luminaire is completely black during evening hours, leaving the crosswalk shrouded in shadow.",
-        publicSafetyRisk: "Increased risk of crime, blind spots, and vehicular collisions with pedestrians navigating the crosswalk.",
-        environmentalImpact: "Low.",
-        recommendedAction: "Schedule bucket truck dispatch to replace the faulty bulb or repair the solar photo-sensor node.",
+        description: "Row of streetlighting poles is completely black during evening hours, leaving the road section in darkness.",
+        publicSafetyRisk: "Sells-by-night traders face security concerns, and pedestrians are exposed to blind spots and high risk of vehicle accidents.",
+        environmentalImpact: "None.",
+        recommendedAction: "Dispatch a crew with a bucket truck to replace faulty sodium bulbs or check the local transformer node fuse.",
         estimatedRepairUrgency: "7 days",
-        priorityScore: 61,
+        priorityScore: 62,
         affectedInfrastructure: "lighting",
-        suggestedDepartment: "electricity department",
+        suggestedDepartment: "Electricity Company of Ghana",
         duplicateLikelihood: "low"
       }
     ];
@@ -116,24 +116,25 @@ app.post('/api/analyze-image', async (req, res) => {
             mimeType: mimeType || 'image/jpeg'
           }
         },
-        `You are an urban infrastructure inspection assistant.
+        `You are an expert urban infrastructure inspection assistant tailored for Ghanaian smart cities (specifically Kumasi, Ghana).
 Analyze the uploaded image and return ONLY valid JSON using this schema:
 
 {
   "issueType": "pothole | flooding | blocked_drain | broken_streetlight | illegal_dumping | damaged_road | unsafe_sidewalk | traffic_sign_damage | water_leakage | other",
   "severity": "low | medium | high | critical",
   "confidence": "low | medium | high",
-  "description": "short description of the visible civic issue",
-  "publicSafetyRisk": "short explanation of risk to pedestrians, vehicles, or residents",
+  "description": "short description of the visible civic issue in Kumasi",
+  "publicSafetyRisk": "short explanation of risk to pedestrians, vehicles, or traders in Kumasi",
   "environmentalImpact": "short explanation of environmental impact",
-  "recommendedAction": "specific action local authorities should take",
+  "recommendedAction": "specific action local Ghanaian authorities should take",
   "estimatedRepairUrgency": "e.g. immediate, 24 hours, 48 hours, 7 days, routine maintenance",
   "priorityScore": 0,
   "affectedInfrastructure": "road | drainage | waste | lighting | water | public_safety | other",
-  "suggestedDepartment": "roads department | sanitation department | drainage department | electricity department | water department | emergency response | other",
+  "suggestedDepartment": "Department of Urban Roads | NADMO / Drainage Department | Environmental Health Department / Zoomlion | Electricity Company of Ghana | Ghana Water Company | Ghana Police MTTD | other",
   "duplicateLikelihood": "low | medium | high"
 }
 
+Ensure recommendations align with Ghanaian civic contexts, recommending the correct departments (such as Department of Urban Roads, NADMO, Zoomlion, ECG, or Ghana Water).
 Do not include markdown.
 Do not include extra text.`
       ],
@@ -163,18 +164,18 @@ app.post('/api/chat-analyst', async (req, res) => {
 
   const apiKey = getGeminiKey();
   if (!apiKey) {
-    console.log('[Gemini Mock] Generating mock chat response.');
+    console.log('[Gemini Mock] Generating mock Kumasi chat response.');
     const userQuery = messages[messages.length - 1].text.toLowerCase();
 
-    let answer = "As your AI City Analyst, I have inspected the Urban Twin database. ";
+    let answer = "As your Kumasi AI City Analyst, I have inspected the Urban Twin database. ";
     if (userQuery.includes('fix first') || userQuery.includes('priority') || userQuery.includes('critical')) {
-      answer += "\n\nBased on the priority engine, the city should immediately focus on **rep-2 (Flooding on Mission Street)** with a critical priority score of **95/100**, and **rep-1 (Pothole on Market Street)** at **82/100**.\n\nThese represent severe risks to pedestrian safety and transit efficiency. Flooding should take precedence due to potential damage to local businesses and electrical risks.";
-    } else if (userQuery.includes('risk') || userQuery.includes('neighborhood') || userQuery.includes('area')) {
-      answer += "\n\nThe **Downtown Market St / Mission St corridor** currently presents the highest infrastructure risk coefficient. It has accumulated both critical stormwater flooding and high-severity road pothole filings, which can lead to rapid cascading road failure.";
+      answer += "\n\nBased on the priority engine, the Kumasi Assemblies should immediately focus on **rep-2 (Kejetia Market Drainage Flooding)** with a critical priority score of **95/100**, and **rep-5 (Adum Commercial Area Water Leakage)** at **89/100**.\n\nThese represent severe risks to pedestrian safety and commercial activity. Drainage flooding must be tackled first to allow market access and prevent waterborne disease vectors.";
+    } else if (userQuery.includes('risk') || userQuery.includes('neighborhood') || userQuery.includes('area') || userQuery.includes('location')) {
+      answer += "\n\nThe **Kejetia Market and Adum Commercial corridor** currently presents the highest infrastructure stress coefficient in Kumasi. It has accumulated critical stormwater flooding and high-pressure pipe leaks, threatening road foundations and commercial transit.";
     } else if (userQuery.includes('summar') || userQuery.includes('incident') || userQuery.includes('today')) {
-      answer += `\n\n**City Infrastructure Summary:**\n- **Active Incidents**: ${reports?.length || 5}\n- **Water Infrastructure**: 1 active water leakage (High severity)\n- **Roads**: 1 active deep pothole (High severity)\n- **Drainage**: 1 active main storm sewer blockage (Critical severity)\n- **Waste**: 1 active dumping case (Medium severity)\n- **Resolved**: 1 broken streetlight (Resolved in the last 24 hours)`;
+      answer += `\n\n**Kumasi Infrastructure Summary:**\n- **Active Incidents**: ${reports?.length || 5}\n- **Water Infrastructure**: 1 pipe leak in Adum (High severity)\n- **Roads**: 1 deep pothole at Tech Junction (High severity)\n- **Drainage**: 1 stormwater sewer choke in Kejetia (Critical severity)\n- **Waste**: 1 dumping heap near Asafo Market (Medium severity)\n- **Resolved**: 1 streetlight blackout on Bantama High Street (Resolved by ECG)`;
     } else {
-      answer += "\n\nTo optimize municipal operations, I recommend dispatching a **vactor truck to Mission Street** for the flooding, and scheduling **asphalt crews to Market Street** tomorrow morning. Road and drainage division scores are currently the most depressed elements of the overall city twin health model.";
+      answer += "\n\nTo optimize municipal operations, I recommend dispatching a **suction pump team to Kejetia** to clear the drains, and directing **Ghana Water Company crews to Adum** to isolate the leaking main. Drainage and road division indices are currently the most depressed elements of the overall Kumasi health twin.";
     }
     return res.json({ text: answer });
   }
@@ -182,17 +183,17 @@ app.post('/api/chat-analyst', async (req, res) => {
   try {
     const ai = new GoogleGenAI({ apiKey });
     
-    // Build chat structure
-    const systemInstruction = `You are "Urban Twin AI Analyst", an expert urban planner, smart city coordinator, and maintenance advisor.
-You are communicating with municipal city officials.
-Your answers should be highly analytical, professional, and practical.
+    // Build chat structure with Ghanaian Smart City context
+    const systemInstruction = `You are "Urban Twin AI Analyst", an expert smart city coordinator, municipal engineer, and maintenance advisor specifically for Kumasi, Ghana.
+You are communicating with Kumasi Metropolitan Assembly (KMA) and Oforikrom Municipal Assembly officials.
+Your answers should be highly analytical, professional, and practical for Ghanaian conditions.
 Use the following list of active and past city reports (provided directly from our Digital Twin database) to back up your statements with specific IDs, severities, and locations:
 
---- CITY REPORTS DATABASE ---
+--- KUMASI CIVIL REPORTS DATABASE ---
 ${reportsSummary}
 ----------------------------
 
-Always refer to specific incidents by ID and location, prioritize critical and high-severity safety hazards, and provide actionable operational recommendations (such as dispatching specific departments or machinery).`;
+Always refer to specific incidents by ID and Ghanaian location names (such as Tech Junction, KNUST, Kejetia, Bantama, Adum, Asafo, Suame, Ayeduase). Refer to Ghanaian organizations (such as Department of Urban Roads, NADMO, Electricity Company of Ghana, Ghana Water Company, and Zoomlion). Always propose concrete, localized recommendations. Use currency GHS if talking about costs.`;
 
     const formattedContents = messages.map((m: any) => ({
       role: m.sender === 'user' ? 'user' : 'model',
@@ -223,24 +224,24 @@ app.post('/api/insights', async (req, res) => {
 
   const apiKey = getGeminiKey();
   if (!apiKey) {
-    console.log('[Gemini Mock] Generating mock insights.');
+    console.log('[Gemini Mock] Generating mock Kumasi insights.');
     const mockInsights = {
       topIssues: [
-        { type: "Stormwater Drainage Floods", count: 3, change: "+20% this week" },
-        { type: "Asphalt Cratering (Potholes)", count: 4, change: "-10% this week" },
-        { type: "Illegal Solid Waste Dumping", count: 2, change: "Stable" }
+        { type: "Choked Gutters & Flooding", count: 3, change: "+20% this week" },
+        { type: "Asphalt Potholes", count: 4, change: "-10% this week" },
+        { type: "Illegal Market Waste Dumping", count: 2, change: "Stable" }
       ],
       highestRiskAreas: [
-        { area: "Mission St & 5th Ave", riskLevel: "Critical", score: 95 },
-        { area: "Market St Corridor", riskLevel: "High", score: 82 },
-        { area: "Valencia St greenway", riskLevel: "Medium", score: 58 }
+        { area: "Kejetia Market Drainage", riskLevel: "Critical", score: 95 },
+        { area: "Tech Junction Crossing", riskLevel: "High", score: 82 },
+        { area: "Asafo Market Outskirts", riskLevel: "Medium", score: 58 }
       ],
-      weeklySummary: "Overall city safety indicators slipped due to high-precipitation events on Day 4, leading to rapid stormwater backups. Streetlighting restoration was highly successful, bringing lighting divisions back to peak levels.",
-      monthlySummary: "Over the last 30 days, roads and drainage infrastructure remain under the highest stress. The roads division requires a structural paving initiative rather than reactive patch maintenance to solve chronic arterial issues.",
+      weeklySummary: "Overall Kumasi health indicators declined temporarily due to heavy rainfall on Day 4, leading to rapid gutter overflows at Kejetia. Electricity Company of Ghana was highly successful in restoring streetlights on Bantama High Street, keeping lighting metrics stable.",
+      monthlySummary: "Over the last 30 days, storm drainage and main roads are under the greatest stress in Kumasi. Assemblies must coordinate with Zoomlion for pre-rain gutter clearing and push the Department of Urban Roads to allocate GHS for structural road resurfacing.",
       recommendations: [
-        "Deploy the Sanitation and Drainage departments jointly to clean the storm main lines near Mission St ahead of forecasted rains.",
-        "Establish regional bulky waste collection events near Valencia St to proactively curb illegal solid waste dumping patterns.",
-        "Transition broken streetlighting logs into automated smart lamp node telemetry to discover blackouts before citizens report them."
+        "Sponsor joint Zoomlion and NADMO clean-up exercises to desilt secondary gutters around Kejetia Market before next rains.",
+        "Request Ghana Water Company to isolate and replace corroded primary valve junctions in Adum commercial sector to stop clean water wasting.",
+        "Urge Department of Urban Roads to prioritize permanent asphalt milling on high-volume lanes near Tech Junction rather than recurring temporary patches."
       ]
     };
     return res.json(mockInsights);
@@ -250,25 +251,26 @@ app.post('/api/insights', async (req, res) => {
     const ai = new GoogleGenAI({ apiKey });
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
-      contents: `You are a city infrastructure operations analyzer. Based on the following real-time report database from our Smart City platform, analyze and generate comprehensive strategic insights.
+      contents: `You are an expert municipal infrastructure planner for Kumasi, Ghana and its surrounding Municipal Assemblies.
+Based on the following real-time report database from our Smart City platform, analyze and generate comprehensive strategic insights.
 
 --- CURRENT INCIDENTS ---
 ${reportsSummary}
 -------------------------
 
-Generate a JSON object conforming EXACTLY to this schema. Do not include markdown wraps or extra text.
+Generate a JSON object conforming EXACTLY to this schema. Do not include markdown wraps or extra text. Make sure suggestions use Ghanaian terms and departments (such as Department of Urban Roads, NADMO, ECG, Ghana Water, Zoomlion) and use GHS currency references if applicable.
 
 {
   "topIssues": [
     { "type": "issue name", "count": 3, "change": "short trend string" }
   ],
   "highestRiskAreas": [
-    { "area": "neighborhood/street name", "riskLevel": "Low | Medium | High | Critical", "score": 85 }
+    { "area": "Kumasi area name (e.g., Kejetia, Adum, Tech Junction, Bantama)", "riskLevel": "Low | Medium | High | Critical", "score": 85 }
   ],
-  "weeklySummary": "comprehensive paragraph detailing urban activity, system stress, and achievements this week",
-  "monthlySummary": "comprehensive paragraph outlining historical trends and long-term infrastructure health forecasts",
+  "weeklySummary": "comprehensive paragraph detailing urban activity, rainfall stress, and municipal achievements this week in Kumasi",
+  "monthlySummary": "comprehensive paragraph outlining historical trends and long-term infrastructure health forecasts for the Ashanti Region",
   "recommendations": [
-    "specific, actionable engineering or policy recommendation for city officials",
+    "specific, actionable engineering or policy recommendation for Kumasi assembly officials (e.g., KMA, ECG, Zoomlion, NADMO)",
     "another actionable recommendation"
   ]
 }`,
@@ -295,7 +297,7 @@ app.post('/api/generate-narration', async (req, res) => {
   const apiKey = getGeminiKey();
   if (!apiKey) {
     return res.json({
-      narration: `Simulation report for ${dateName || 'today'}: Category updates show Road Health at ${healthMetrics?.roadHealth || 80}%, Drainage Health at ${healthMetrics?.drainageHealth || 80}%. Localized maintenance intervention successfully stabilized key municipal services.`
+      narration: `Simulation report for Kumasi on ${dateName || 'today'}: Category updates show Road Health at ${healthMetrics?.roadHealth || 80}%, Drainage Health at ${healthMetrics?.drainageHealth || 80}%. Localized maintenance intervention successfully stabilized key municipal services.`
     });
   }
 
@@ -303,23 +305,23 @@ app.post('/api/generate-narration', async (req, res) => {
     const ai = new GoogleGenAI({ apiKey });
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
-      contents: `You are the narrator of an Urban Digital Twin system.
+      contents: `You are the narrator of an Urban Digital Twin system for Kumasi, Ghana.
 Generate a concise, authoritative, yet engaging 2-sentence narration for a municipal timeline dashboard on ${dateName || 'this day'}.
 
-The current city metrics are:
+The current Kumasi metrics are:
 ${metricsStr}
 
 The events/changes registered are:
 ${eventsStr}
 
-Describe specifically how these events affected the corresponding city health metrics. Keep it highly focused, objective, and realistic.`
+Describe specifically how these events affected the corresponding city health metrics, using Ghanaian smart city terminology where relevant. Keep it highly focused, objective, and realistic.`
     });
 
     return res.json({ narration: response.text?.trim() });
   } catch (error: any) {
     console.error('Gemini Narration Error:', error);
     res.json({
-      narration: `Analysis on ${dateName || 'this day'} shows overall city health is holding at ${healthMetrics?.overallHealth || 80}%. Drainage and road maintenance remain top priorities.`
+      narration: `Analysis on ${dateName || 'this day'} shows overall Kumasi health is holding at ${healthMetrics?.overallHealth || 80}%. Drainage and road maintenance remain top priorities.`
     });
   }
 });

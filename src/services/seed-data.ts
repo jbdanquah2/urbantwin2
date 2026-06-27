@@ -5,28 +5,28 @@
 
 import { Report, CityHealthSnapshot } from '../types';
 
-// Default center coordinates: San Francisco area
-export const DEFAULT_LAT = 37.7749;
-export const DEFAULT_LNG = -122.4194;
+// Default center coordinates: Kumasi, Ghana
+export const DEFAULT_LAT = 6.6906;
+export const DEFAULT_LNG = -1.6187;
 
 export const INITIAL_REPORTS: Report[] = [
   {
     id: 'rep-1',
     imageUrl: 'https://images.unsplash.com/photo-1515162305285-0293e4767cc2?auto=format&fit=crop&w=600&q=80',
-    locationName: '1420 Market Street, San Francisco',
-    latitude: 37.7752,
-    longitude: -122.4190,
+    locationName: 'Tech Junction (near KNUST Main Gate), Kumasi',
+    latitude: 6.6800,
+    longitude: -1.5750,
     issueType: 'pothole',
     severity: 'high',
     confidence: 'high',
-    description: 'Deep, hazardous pothole in the middle lane causing cars to swerve dangerously.',
-    publicSafetyRisk: 'High risk of tire damage and vehicle collisions due to swerving.',
-    environmentalImpact: 'Negligible impact on surrounding vegetation.',
-    recommendedAction: 'Cordon off lane and schedule rapid asphalt repair within 24 hours.',
+    description: 'Deep, hazardous pothole on the busy Tech Junction road leading to the KNUST gate, causing severe traffic jams and vehicle damage as drivers swerve.',
+    publicSafetyRisk: 'High risk of tire blowouts, suspension damage, and collisions on this busy Kumasi arterial road.',
+    environmentalImpact: 'Negligible on vegetation, but causing gridlock and increased exhaust emissions.',
+    recommendedAction: 'Cordon off the lane and schedule rapid road patching with high-performance hot-mix asphalt.',
     estimatedRepairUrgency: '24 hours',
     priorityScore: 82,
     affectedInfrastructure: 'road',
-    suggestedDepartment: 'roads department',
+    suggestedDepartment: 'Department of Urban Roads',
     duplicateLikelihood: 'low',
     status: 'pending',
     createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(), // 3 days ago
@@ -35,20 +35,20 @@ export const INITIAL_REPORTS: Report[] = [
   {
     id: 'rep-2',
     imageUrl: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=600&q=80',
-    locationName: '802 Mission Street, San Francisco',
-    latitude: 37.7831,
-    longitude: -122.4045,
+    locationName: 'Kejetia Market Drainage, Kumasi',
+    latitude: 6.6985,
+    longitude: -1.6225,
     issueType: 'flooding',
     severity: 'critical',
     confidence: 'high',
-    description: 'Major stormwater backup overflowing onto the sidewalk and flooding the local shop entrances.',
-    publicSafetyRisk: 'Severe slip hazard for pedestrians; electrical risks for businesses.',
-    environmentalImpact: 'Runoff carrying waste and oil into the city center water table.',
-    recommendedAction: 'Dispatch storm drainage team to clear main lines immediately.',
+    description: 'Major stormwater backup overflowing onto walkways and market stalls after yesterday\'s heavy rainfall due to choked gutters.',
+    publicSafetyRisk: 'Severe slip hazard for market sellers and shoppers; electrical risk for nearby shops and sanitation threats.',
+    environmentalImpact: 'Runoff carrying market waste, plastics, and debris into local drainage basins.',
+    recommendedAction: 'Dispatch emergency drainage team to flush choked gutters and clear secondary drainage blockages.',
     estimatedRepairUrgency: 'immediate',
     priorityScore: 95,
     affectedInfrastructure: 'drainage',
-    suggestedDepartment: 'drainage department',
+    suggestedDepartment: 'NADMO / Drainage Department',
     duplicateLikelihood: 'low',
     status: 'in_progress',
     createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(), // 2 days ago
@@ -57,20 +57,20 @@ export const INITIAL_REPORTS: Report[] = [
   {
     id: 'rep-3',
     imageUrl: 'https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?auto=format&fit=crop&w=600&q=80',
-    locationName: '220 Valencia Street, San Francisco',
-    latitude: 37.7685,
-    longitude: -122.4225,
+    locationName: 'Asafo Market Waste Pile, Kumasi',
+    latitude: 6.6890,
+    longitude: -1.6150,
     issueType: 'illegal_dumping',
     severity: 'medium',
     confidence: 'high',
-    description: 'Several bags of industrial waste and broken furniture dumped next to the community garden.',
-    publicSafetyRisk: 'Trip hazards and attraction of vermin/pests.',
-    environmentalImpact: 'Contamination risk to garden soils and storm drains.',
-    recommendedAction: 'Send bulky waste removal unit and log license plates if nearby camera footage exists.',
+    description: 'Illegal heap of bulk solid waste and plastic containers dumped next to the market walkway, causing a terrible odor.',
+    publicSafetyRisk: 'Promotes rodent infestation and blocks pedestrian accessibility routes around the commercial area.',
+    environmentalImpact: 'Contaminant runoff into storm drains and local soils during rain showers.',
+    recommendedAction: 'Deploy waste sanitation truck for bulk refuse collection and increase patrols near the market.',
     estimatedRepairUrgency: '48 hours',
     priorityScore: 58,
     affectedInfrastructure: 'waste',
-    suggestedDepartment: 'sanitation department',
+    suggestedDepartment: 'Environmental Health Department / Zoomlion',
     duplicateLikelihood: 'low',
     status: 'pending',
     createdAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString(), // 4 days ago
@@ -79,20 +79,20 @@ export const INITIAL_REPORTS: Report[] = [
   {
     id: 'rep-4',
     imageUrl: 'https://images.unsplash.com/photo-1509395062183-67c5ad6faff9?auto=format&fit=crop&w=600&q=80',
-    locationName: '550 Castro Street, San Francisco',
-    latitude: 37.7592,
-    longitude: -122.4350,
+    locationName: 'Bantama High Street, Kumasi',
+    latitude: 6.7050,
+    longitude: -1.6350,
     issueType: 'broken_streetlight',
     severity: 'medium',
     confidence: 'high',
-    description: 'Entire row of three streetlights is completely black. The intersection is dangerously dark.',
-    publicSafetyRisk: 'Increased likelihood of vehicle-pedestrian accidents and personal safety issues.',
+    description: 'An entire row of four streetlights is completely black. The busy intersection is shrouded in dark during evening hours.',
+    publicSafetyRisk: 'Increased risk of vehicle-pedestrian accidents and security issues for evening market sellers.',
     environmentalImpact: 'None.',
-    recommendedAction: 'Dispatch maintenance technician to check regional ballast or bulb failures.',
+    recommendedAction: 'Dispatch electrical maintenance technician to replace faulty bulbs and check the local transformer line.',
     estimatedRepairUrgency: '7 days',
     priorityScore: 62,
     affectedInfrastructure: 'lighting',
-    suggestedDepartment: 'electricity department',
+    suggestedDepartment: 'Electricity Company of Ghana',
     duplicateLikelihood: 'low',
     status: 'resolved',
     createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(), // 5 days ago
@@ -102,20 +102,20 @@ export const INITIAL_REPORTS: Report[] = [
   {
     id: 'rep-5',
     imageUrl: 'https://images.unsplash.com/photo-1584267326895-d889a5b15111?auto=format&fit=crop&w=600&q=80',
-    locationName: '1100 Van Ness Avenue, San Francisco',
-    latitude: 37.7850,
-    longitude: -122.4215,
+    locationName: 'Adum Commercial Area, Kumasi',
+    latitude: 6.6920,
+    longitude: -1.6240,
     issueType: 'water_leakage',
     severity: 'high',
     confidence: 'medium',
-    description: 'High-pressure water main rupture under the sidewalk; water bubbling up rapidly.',
-    publicSafetyRisk: 'Pedestrian sidewalk undermining and vehicle hydroplaning risks.',
-    environmentalImpact: 'Millions of gallons of drinking water wasted; soil erosion.',
-    recommendedAction: 'Emergency shut-off and isolation of main water loop for structural repair.',
+    description: 'High-pressure water main pipe leakage near the Adum railway line, spraying clean water onto the walkway and undermining the road shoulder.',
+    publicSafetyRisk: 'Pedestrian walkway flooding and danger of road base erosion under active vehicle traffic lanes.',
+    environmentalImpact: 'Substantial loss of treated clean water; localized soil erosion.',
+    recommendedAction: 'Isolate water line valve immediately and dispatch pipe fitting technicians for structural seal.',
     estimatedRepairUrgency: 'immediate',
     priorityScore: 89,
     affectedInfrastructure: 'water',
-    suggestedDepartment: 'water department',
+    suggestedDepartment: 'Ghana Water Company',
     duplicateLikelihood: 'low',
     status: 'in_progress',
     createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(), // 1 day ago
@@ -136,7 +136,7 @@ export const INITIAL_SNAPSHOTS: CityHealthSnapshot[] = [
     incidentCount: 5,
     resolvedCount: 2,
     highPriorityCount: 1,
-    aiNarration: 'The city operations began the week with highly robust stats. Minor waste reports in the eastern sector were flagged, while general road health remained near peak values.'
+    aiNarration: 'The city operations began the cycle with robust metrics. Low-severity waste dumps around Asafo were flagged, while general road health in Oforikrom remained near baseline.'
   },
   {
     id: 'snap-2',
@@ -150,7 +150,7 @@ export const INITIAL_SNAPSHOTS: CityHealthSnapshot[] = [
     incidentCount: 7,
     resolvedCount: 2,
     highPriorityCount: 2,
-    aiNarration: 'Waste health dropped due to a newly reported illegal dumping site on Valencia Street. Additionally, water health showed decline after a major mains leakage was registered.'
+    aiNarration: 'Waste health dropped after a newly reported illegal dumping site near Asafo Market. Additionally, water health showed a decline after an active leak was registered in Adum.'
   },
   {
     id: 'snap-3',
@@ -164,7 +164,7 @@ export const INITIAL_SNAPSHOTS: CityHealthSnapshot[] = [
     incidentCount: 10,
     resolvedCount: 2,
     highPriorityCount: 3,
-    aiNarration: 'Road health suffered a sharp 10% decrease following a series of high-severity pothole filings near Market St. Streetlighting also fell as row ballasts failed on Castro.'
+    aiNarration: 'Road health suffered a 10% decrease following deep pothole filings near Tech Junction. Streetlighting also fell as row bulb failures were reported on Bantama High Street.'
   },
   {
     id: 'snap-4',
@@ -178,7 +178,7 @@ export const INITIAL_SNAPSHOTS: CityHealthSnapshot[] = [
     incidentCount: 14,
     resolvedCount: 2,
     highPriorityCount: 5,
-    aiNarration: 'An intense rainstorm triggered drainage crises, plunging drainage health to 68%. Blocked sewers reported on Mission St created significant sidewalk flooding.'
+    aiNarration: 'Heavy rainfall in Kumasi triggered severe drainage crises, depressing drainage health to 68%. Choked gutters reported around Kejetia caused substantial shop flooding.'
   },
   {
     id: 'snap-5',
@@ -192,7 +192,7 @@ export const INITIAL_SNAPSHOTS: CityHealthSnapshot[] = [
     incidentCount: 15,
     resolvedCount: 3,
     highPriorityCount: 4,
-    aiNarration: 'Streetlighting health rebounded back to 88% after emergency grid technicians replaced ballasts on Castro Street. Drainage crews began resolving low-level backups.'
+    aiNarration: 'Streetlighting health rebounded to 88% after the Electricity Company of Ghana completed bulb and grid replacements on Bantama High Street. Zoomlion crews began gutter clearing.'
   },
   {
     id: 'snap-6',
@@ -206,7 +206,7 @@ export const INITIAL_SNAPSHOTS: CityHealthSnapshot[] = [
     incidentCount: 12,
     resolvedCount: 5,
     highPriorityCount: 2,
-    aiNarration: 'Active municipal mobilization resulted in a general rise in City Health. Water engineers isolated the main leak on Van Ness, lifting the water score back to 80%.'
+    aiNarration: 'Mobilization by the local assembly lifted overall city health. Ghana Water Company isolated and repaired the main leakage in Adum, raising water health back to 80%.'
   },
   {
     id: 'snap-7',
@@ -220,6 +220,6 @@ export const INITIAL_SNAPSHOTS: CityHealthSnapshot[] = [
     incidentCount: 10,
     resolvedCount: 6,
     highPriorityCount: 1,
-    aiNarration: 'Today, overall city health settled at a solid 83%. Road repairs near main arterials and complete drain cleaning on Mission Street successfully contained major environmental hazards.'
+    aiNarration: 'Today, Kumasi municipal twin health stabilized at 83%. Road patches near Tech Junction and completed drain flushing near Kejetia successfully minimized active public safety risks.'
   }
 ];

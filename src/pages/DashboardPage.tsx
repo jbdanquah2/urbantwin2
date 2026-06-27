@@ -460,31 +460,31 @@ export const DashboardPage: React.FC = () => {
           <div className="flex-1 space-y-2">
             {[
               {
-                dept: "Roads Department",
+                dept: "Dept of Urban Roads",
                 count: reports.filter(r => r.affectedInfrastructure === 'road' && r.status !== 'resolved').length,
                 status: healthMetrics.roadHealth >= 80 ? 'Good' : 'Overload',
                 color: healthMetrics.roadHealth >= 80 ? 'text-green-500' : 'text-amber-500',
               },
               {
-                dept: "Drainage Department",
+                dept: "NADMO / Drainage",
                 count: reports.filter(r => r.affectedInfrastructure === 'drainage' && r.status !== 'resolved').length,
                 status: healthMetrics.drainageHealth >= 80 ? 'Good' : 'Action Required',
                 color: healthMetrics.drainageHealth >= 80 ? 'text-green-500' : 'text-rose-500',
               },
               {
-                dept: "Sanitation Department",
+                dept: "Zoomlion / Waste Unit",
                 count: reports.filter(r => r.affectedInfrastructure === 'waste' && r.status !== 'resolved').length,
                 status: healthMetrics.wasteHealth >= 80 ? 'Good' : 'Pending',
                 color: healthMetrics.wasteHealth >= 80 ? 'text-green-500' : 'text-amber-500',
               },
               {
-                dept: "Electricity Division",
+                dept: "Electricity Co. of Ghana",
                 count: reports.filter(r => r.affectedInfrastructure === 'lighting' && r.status !== 'resolved').length,
                 status: healthMetrics.lightingHealth >= 80 ? 'Good' : 'Outage Logs',
                 color: healthMetrics.lightingHealth >= 80 ? 'text-green-500' : 'text-rose-500',
               },
               {
-                dept: "Water Infrastructure",
+                dept: "Ghana Water Company",
                 count: reports.filter(r => r.affectedInfrastructure === 'water' && r.status !== 'resolved').length,
                 status: healthMetrics.waterHealth >= 80 ? 'Good' : 'Leaks Active',
                 color: healthMetrics.waterHealth >= 80 ? 'text-green-500' : 'text-amber-500',

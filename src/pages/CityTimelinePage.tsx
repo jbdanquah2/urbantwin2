@@ -108,10 +108,10 @@ export const CityTimelinePage: React.FC = () => {
 
   // Scale coordinates to fit mini map
   const getSvgCoords = (lat: number, lng: number) => {
-    const minLat = 37.7550;
-    const maxLat = 37.7900;
-    const minLng = -122.4400;
-    const maxLng = -122.4000;
+    const minLat = 6.6600;
+    const maxLat = 6.7300;
+    const minLng = -1.7200;
+    const maxLng = -1.5000;
 
     const percentX = (lng - minLng) / (maxLng - minLng);
     const percentY = 1 - (lat - minLat) / (maxLat - minLat);

@@ -78,11 +78,11 @@ export const MapViewPage: React.FC = () => {
 
   // Convert GPS bounds to local SVG coordinates for our custom Vector Grid Map
   const getSvgCoords = (lat: number, lng: number) => {
-    // Coordinate bounds encompassing standard San Francisco seed data
-    const minLat = 37.7550;
-    const maxLat = 37.7900;
-    const minLng = -122.4400;
-    const maxLng = -122.4000;
+    // Coordinate bounds encompassing Kumasi, Ghana seed data
+    const minLat = 6.6600;
+    const maxLat = 6.7300;
+    const minLng = -1.7200;
+    const maxLng = -1.5000;
 
     const percentX = (lng - minLng) / (maxLng - minLng);
     // Y-axis is inverted in SVGs (0 is at top)
@@ -269,32 +269,32 @@ export const MapViewPage: React.FC = () => {
                 strokeLinecap="round"
                 className="opacity-25 dark:opacity-15 animate-pulse" 
               />
-              <text x="35%" y="45%" className="font-sans text-[10px] font-bold fill-blue-500/30 tracking-widest uppercase">Bay Canal</text>
+              <text x="35%" y="45%" className="font-sans text-[10px] font-bold fill-blue-500/30 tracking-widest uppercase">Subin River</text>
 
               {/* Central Park Area */}
               <rect x="15%" y="60%" width="25%" height="20%" rx="12" fill="#10b981" fillOpacity="0.1" stroke="#10b981" strokeWidth="1" strokeDasharray="4 4" className="opacity-70" />
-              <text x="21%" y="71%" className="font-sans text-[10px] font-bold fill-emerald-500/40 tracking-widest uppercase">Central Parks</text>
+              <text x="21%" y="71%" className="font-sans text-[10px] font-bold fill-emerald-500/40 tracking-widest uppercase">Rattray Park / Gardens</text>
 
               {/* Streets Vector Lines */}
               {/* Mission Street */}
               <line x1="0" y1="35%" x2="100%" y2="35%" stroke="currentColor" strokeWidth="2" strokeOpacity="0.3" />
-              <text x="5%" y="33%" className="font-sans text-[8px] font-bold fill-slate-400 tracking-wider">MISSION STREET</text>
+              <text x="5%" y="33%" className="font-sans text-[8px] font-bold fill-slate-400 tracking-wider">BANTAMA HIGH STREET</text>
 
               {/* Market Street */}
               <line x1="0" y1="0" x2="100%" y2="100%" stroke="currentColor" strokeWidth="2" strokeOpacity="0.3" />
-              <text x="45%" y="47%" className="font-sans text-[8px] font-bold fill-slate-400 tracking-wider transform -rotate-12">MARKET STREET</text>
+              <text x="45%" y="47%" className="font-sans text-[8px] font-bold fill-slate-400 tracking-wider transform -rotate-12">KEJETIA STRETCH</text>
 
               {/* Castro Street */}
               <line x1="30%" y1="0" x2="30%" y2="100%" stroke="currentColor" strokeWidth="2" strokeOpacity="0.3" />
-              <text x="31%" y="8%" className="font-sans text-[8px] font-bold fill-slate-400 tracking-wider">CASTRO ST</text>
+              <text x="31%" y="8%" className="font-sans text-[8px] font-bold fill-slate-400 tracking-wider">ADUM ST</text>
 
               {/* Valencia Street */}
               <line x1="60%" y1="0" x2="60%" y2="100%" stroke="currentColor" strokeWidth="2" strokeOpacity="0.3" />
-              <text x="61%" y="8%" className="font-sans text-[8px] font-bold fill-slate-400 tracking-wider">VALENCIA ST</text>
+              <text x="61%" y="8%" className="font-sans text-[8px] font-bold fill-slate-400 tracking-wider">KNUST ROAD</text>
 
               {/* Van Ness Avenue */}
               <line x1="85%" y1="0" x2="85%" y2="100%" stroke="currentColor" strokeWidth="2" strokeOpacity="0.3" />
-              <text x="86%" y="8%" className="font-sans text-[8px] font-bold fill-slate-400 tracking-wider">VAN NESS AVE</text>
+              <text x="86%" y="8%" className="font-sans text-[8px] font-bold fill-slate-400 tracking-wider">OFORIKROM BYPASS</text>
             </svg>
 
             {/* Glowing active markers mapped overlay */}
@@ -350,7 +350,7 @@ export const MapViewPage: React.FC = () => {
           <div className="absolute inset-0">
             <APIProvider apiKey={gmapsApiKey}>
               <GoogleMap
-                defaultCenter={{ lat: 37.7749, lng: -122.4194 }}
+                defaultCenter={{ lat: 6.6906, lng: -1.6187 }}
                 defaultZoom={13}
                 gestureHandling="cooperative"
                 mapId="921eb0a8b981bc8" // modern style
@@ -376,7 +376,7 @@ export const MapViewPage: React.FC = () => {
 
         {/* Ambient watermark/radar vector overlay in corners */}
         <div className="absolute top-4 left-4 p-3 rounded-xl bg-white/85 dark:bg-slate-900/85 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm z-40 text-[10px] font-mono font-bold text-slate-500 dark:text-slate-400 flex items-center gap-1.5 select-none pointer-events-none">
-          <Activity className="w-3.5 h-3.5 text-blue-500 animate-pulse" /> GRID SCALE: MERCATOR SF
+          <Activity className="w-3.5 h-3.5 text-blue-500 animate-pulse" /> GRID SCALE: MERCATOR KUMASI
         </div>
       </div>
 

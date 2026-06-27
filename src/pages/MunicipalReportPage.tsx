@@ -109,7 +109,7 @@ export const MunicipalReportPage: React.FC = () => {
           <div>
             <span className="text-[10px] font-black uppercase tracking-wider text-blue-600 print:text-black">Urban Twin Operating System</span>
             <h1 className="text-3xl font-black text-slate-900 mt-1 tracking-tight">MUNICIPAL PERFORMANCE BRIEF</h1>
-            <span className="block text-xs text-slate-500 mt-1 font-medium">Digital Representation of Metro Twin City • San Francisco District</span>
+            <span className="block text-xs text-slate-500 mt-1 font-medium">Digital Representation of Metro Twin City • Kumasi Municipal Assemblies, Ashanti Region, Ghana</span>
           </div>
           <div className="text-right text-xs">
             <span className="block font-bold">REPORT REF: UT-2026-A</span>
